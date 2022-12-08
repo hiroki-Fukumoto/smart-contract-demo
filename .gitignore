@@ -1,0 +1,5 @@
+/src/.env
+/src/temp/*
+/src/tmp/*
+/ganache
+/node_modules

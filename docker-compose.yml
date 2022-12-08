@@ -1,0 +1,42 @@
+version: '3'
+services: 
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    volumes:
+      - ./src:/go/src
+    ports: 
+      - 8080:8080
+    tty: true
+    stdin_open: true
+    networks:
+      - geth-dapp-demo-network
+      - default
+
+  geth:
+    build:
+      context: .
+      dockerfile: ./docker/geth/Dockerfile
+    volumes:
+      - ./solidity:/go/solidity
+      - ./src:/go/src
+    tty: true
+    networks:
+      - geth-dapp-demo-network
+
+  ganache:
+    build:
+      context: ./docker/ganache
+      dockerfile: Dockerfile
+    volumes:
+      - ./ganache/ganache-data:/var/ganache
+    ports: 
+      - 3000:8545
+    networks:
+      - geth-dapp-demo-network
+      - default
+
+networks:
+  geth-dapp-demo-network:
+    external: true

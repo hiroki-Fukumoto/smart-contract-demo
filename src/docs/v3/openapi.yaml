@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: Geth DAPP DEMO
+  title: Geth DAPP DEMO
+  version: "1.0"
+paths:
+  /api/health-check:
+    get:
+      description: Check the server communication.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/controller.healthCheckResponse"
+      summary: Health Check
+      tags:
+        - healthCheck
+  /api/v1/contract-address:
+    get:
+      description: Get Contract Address
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/controller.contractAddressResponse"
+      summary: Get Contract Address
+      tags:
+        - contractAddress
+  /api/v1/hello:
+    get:
+      description: Smart Contract demo.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/controller.helloWorldResponse"
+      summary: Hello World
+      tags:
+        - helloWorld
+servers:
+  - url: //localhost:8080
+components:
+  schemas:
+    controller.contractAddressResponse:
+      properties:
+        address:
+          type: string
+      type: object
+    controller.healthCheckResponse:
+      properties:
+        message:
+          type: string
+      type: object
+    controller.helloWorldResponse:
+      properties:
+        message:
+          type: string
+      type: object

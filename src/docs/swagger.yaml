@@ -1,0 +1,69 @@
+definitions:
+  controller.contractAddressResponse:
+    properties:
+      address:
+        type: string
+    type: object
+  controller.healthCheckResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  controller.helloWorldResponse:
+    properties:
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Geth DAPP DEMO
+  title: Geth DAPP DEMO
+  version: "1.0"
+paths:
+  /api/health-check:
+    get:
+      consumes:
+      - application/json
+      description: Check the server communication.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.healthCheckResponse'
+      summary: Health Check
+      tags:
+      - healthCheck
+  /api/v1/contract-address:
+    get:
+      consumes:
+      - application/json
+      description: Get Contract Address
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.contractAddressResponse'
+      summary: Get Contract Address
+      tags:
+      - contractAddress
+  /api/v1/hello:
+    get:
+      consumes:
+      - application/json
+      description: Smart Contract demo.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.helloWorldResponse'
+      summary: Hello World
+      tags:
+      - helloWorld
+swagger: "2.0"
