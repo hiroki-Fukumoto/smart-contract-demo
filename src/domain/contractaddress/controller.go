@@ -1,19 +1,10 @@
 package contractaddress
 
 import (
-	"context"
-	"crypto/ecdsa"
-	"fmt"
-	"log"
-	"math/big"
 	"net/http"
 
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/gin-gonic/gin"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/contracts"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/env"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/errorhandler"
 )
 
 type ContractAddressController interface {
@@ -21,14 +12,13 @@ type ContractAddressController interface {
 }
 
 type contractAddressController struct {
+	contractAddressService ContractAddressService
 }
 
-func NewContractAddressController() ContractAddressController {
-	return &contractAddressController{}
-}
-
-type contractAddressResponse struct {
-	Address string `json:"address"`
+func NewContractAddressController(s ContractAddressService) ContractAddressController {
+	return &contractAddressController{
+		contractAddressService: s,
+	}
 }
 
 // @Summary Get Contract Address
@@ -36,58 +26,19 @@ type contractAddressResponse struct {
 // @Tags contractAddress
 // @Accept json
 // @Produce json
-// @Success 200 {object} contractAddressResponse
+// @Success 200 {object} ContractAddressResponse
+// @Failure 400 {object} errorhandler.ErrorResponse
 // @Router /api/v1/contract-address [get]
 func (cn contractAddressController) Get(c *gin.Context) {
-	client, err := ethclient.Dial(fmt.Sprintf("%s:%s", env.GanacheHost(), env.GanachePort()))
+	address, err := cn.contractAddressService.GetContractAddress()
 	if err != nil {
-		log.Fatal(err)
+		apiError := errorhandler.ApiErrorHandle(errorhandler.ErrBadRequest, err.Error())
+		c.JSON(apiError.Status, apiError)
+		return
 	}
 
-	priKey := "Your Private Key"
-	privateKey, err := crypto.HexToECDSA(priKey)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	if !ok {
-		log.Fatal("invalid key")
-	}
-
-	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
-	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	gasPrice, err := client.SuggestGasPrice(context.Background())
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	chainID, err := client.ChainID(context.Background())
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
-	if err != nil {
-		log.Fatal(err)
-	}
-	auth.Nonce = big.NewInt(int64(nonce))
-	auth.Value = big.NewInt(0)
-	auth.GasLimit = uint64(300000)
-	auth.GasPrice = gasPrice
-
-	address, _, _, err := contracts.DeployContracts(auth, client)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	res := contractAddressResponse{
-		Address: address.String(),
+	res := ContractAddressResponse{
+		Address: *address,
 	}
 
 	c.JSON(http.StatusOK, res)

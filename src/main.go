@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/hiroki-Fukumoto/smart-contract-demo/route"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/route"
 )
 
 const location = "Asia/Tokyo"

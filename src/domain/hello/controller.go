@@ -8,8 +8,8 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/gin-gonic/gin"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/contracts"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/env"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/contracts"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/env"
 )
 
 type HelloController interface {
@@ -24,7 +24,7 @@ func NewHelloController() HelloController {
 }
 
 const (
-	constantAddress = "Your Contract Address"
+	constantAddress = "0x1cd78830493F50Fd35204CD34Ed470024106A93d"
 )
 
 type helloWorldResponse struct {

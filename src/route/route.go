@@ -4,10 +4,10 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	_ "github.com/hiroki-Fukumoto/smart-contract-demo/docs"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/domain/contractaddress"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/domain/healthcheck"
-	"github.com/hiroki-Fukumoto/smart-contract-demo/domain/hello"
+	_ "github.com/hiroki-Fukumoto/geth-dapp-demo/docs"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/contractaddress"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/healthcheck"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/hello"
 
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -48,7 +48,8 @@ func SetupRouter() *gin.Engine {
 
 	gContractAddress := appApiV1.Group("contract-address")
 	{
-		c := contractaddress.NewContractAddressController()
+		s := contractaddress.NewContractAddressService()
+		c := contractaddress.NewContractAddressController(s)
 		gContractAddress.GET("", c.Get)
 	}
 
