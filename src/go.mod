@@ -1,4 +1,4 @@
-module github.com/hiroki-Fukumoto/smart-contract-demo
+module github.com/hiroki-Fukumoto/geth-dapp-demo
 
 go 1.19
 
