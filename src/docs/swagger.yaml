@@ -1,8 +1,17 @@
 definitions:
-  contractaddress.contractAddressResponse:
+  contractaddress.ContractAddressResponse:
     properties:
       address:
         type: string
+    type: object
+  errorhandler.ErrorResponse:
+    properties:
+      error:
+        type: string
+      error_detail:
+        type: string
+      status:
+        type: integer
     type: object
   healthcheck.healthCheckResponse:
     properties:
@@ -47,7 +56,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/contractaddress.contractAddressResponse'
+            $ref: '#/definitions/contractaddress.ContractAddressResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errorhandler.ErrorResponse'
       summary: Get Contract Address
       tags:
       - contractAddress

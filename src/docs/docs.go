@@ -56,7 +56,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/contractaddress.contractAddressResponse"
+                            "$ref": "#/definitions/contractaddress.ContractAddressResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errorhandler.ErrorResponse"
                         }
                     }
                 }
@@ -87,11 +93,25 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "contractaddress.contractAddressResponse": {
+        "contractaddress.ContractAddressResponse": {
             "type": "object",
             "properties": {
                 "address": {
                     "type": "string"
+                }
+            }
+        },
+        "errorhandler.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "error_detail": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
                 }
             }
         },

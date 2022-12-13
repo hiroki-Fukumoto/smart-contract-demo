@@ -27,7 +27,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/contractaddress.contractAddressResponse"
+                $ref: "#/components/schemas/contractaddress.ContractAddressResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorhandler.ErrorResponse"
       summary: Get Contract Address
       tags:
         - contractAddress
@@ -48,10 +54,19 @@ servers:
   - url: //localhost:8080
 components:
   schemas:
-    contractaddress.contractAddressResponse:
+    contractaddress.ContractAddressResponse:
       properties:
         address:
           type: string
+      type: object
+    errorhandler.ErrorResponse:
+      properties:
+        error:
+          type: string
+        error_detail:
+          type: string
+        status:
+          type: integer
       type: object
     healthcheck.healthCheckResponse:
       properties:
