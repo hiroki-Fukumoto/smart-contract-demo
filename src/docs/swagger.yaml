@@ -1,15 +1,15 @@
 definitions:
-  controller.contractAddressResponse:
+  contractaddress.contractAddressResponse:
     properties:
       address:
         type: string
     type: object
-  controller.healthCheckResponse:
+  healthcheck.healthCheckResponse:
     properties:
       message:
         type: string
     type: object
-  controller.helloWorldResponse:
+  hello.helloWorldResponse:
     properties:
       message:
         type: string
@@ -32,7 +32,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.healthCheckResponse'
+            $ref: '#/definitions/healthcheck.healthCheckResponse'
       summary: Health Check
       tags:
       - healthCheck
@@ -47,7 +47,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.contractAddressResponse'
+            $ref: '#/definitions/contractaddress.contractAddressResponse'
       summary: Get Contract Address
       tags:
       - contractAddress
@@ -62,7 +62,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.helloWorldResponse'
+            $ref: '#/definitions/hello.helloWorldResponse'
       summary: Hello World
       tags:
       - helloWorld

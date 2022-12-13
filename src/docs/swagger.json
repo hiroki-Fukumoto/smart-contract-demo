@@ -25,7 +25,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.healthCheckResponse"
+                            "$ref": "#/definitions/healthcheck.healthCheckResponse"
                         }
                     }
                 }
@@ -48,7 +48,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.contractAddressResponse"
+                            "$ref": "#/definitions/contractaddress.contractAddressResponse"
                         }
                     }
                 }
@@ -71,7 +71,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.helloWorldResponse"
+                            "$ref": "#/definitions/hello.helloWorldResponse"
                         }
                     }
                 }
@@ -79,7 +79,7 @@
         }
     },
     "definitions": {
-        "controller.contractAddressResponse": {
+        "contractaddress.contractAddressResponse": {
             "type": "object",
             "properties": {
                 "address": {
@@ -87,7 +87,7 @@
                 }
             }
         },
-        "controller.healthCheckResponse": {
+        "healthcheck.healthCheckResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -95,7 +95,7 @@
                 }
             }
         },
-        "controller.helloWorldResponse": {
+        "hello.helloWorldResponse": {
             "type": "object",
             "properties": {
                 "message": {

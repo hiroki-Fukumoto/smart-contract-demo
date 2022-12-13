@@ -33,7 +33,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.healthCheckResponse"
+                            "$ref": "#/definitions/healthcheck.healthCheckResponse"
                         }
                     }
                 }
@@ -56,7 +56,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.contractAddressResponse"
+                            "$ref": "#/definitions/contractaddress.contractAddressResponse"
                         }
                     }
                 }
@@ -79,7 +79,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.helloWorldResponse"
+                            "$ref": "#/definitions/hello.helloWorldResponse"
                         }
                     }
                 }
@@ -87,7 +87,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "controller.contractAddressResponse": {
+        "contractaddress.contractAddressResponse": {
             "type": "object",
             "properties": {
                 "address": {
@@ -95,7 +95,7 @@ const docTemplate = `{
                 }
             }
         },
-        "controller.healthCheckResponse": {
+        "healthcheck.healthCheckResponse": {
             "type": "object",
             "properties": {
                 "message": {
@@ -103,7 +103,7 @@ const docTemplate = `{
                 }
             }
         },
-        "controller.helloWorldResponse": {
+        "hello.helloWorldResponse": {
             "type": "object",
             "properties": {
                 "message": {

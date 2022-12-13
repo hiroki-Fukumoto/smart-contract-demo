@@ -14,7 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/controller.healthCheckResponse"
+                $ref: "#/components/schemas/healthcheck.healthCheckResponse"
       summary: Health Check
       tags:
         - healthCheck
@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/controller.contractAddressResponse"
+                $ref: "#/components/schemas/contractaddress.contractAddressResponse"
       summary: Get Contract Address
       tags:
         - contractAddress
@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/controller.helloWorldResponse"
+                $ref: "#/components/schemas/hello.helloWorldResponse"
       summary: Hello World
       tags:
         - helloWorld
@@ -48,17 +48,17 @@ servers:
   - url: //localhost:8080
 components:
   schemas:
-    controller.contractAddressResponse:
+    contractaddress.contractAddressResponse:
       properties:
         address:
           type: string
       type: object
-    controller.healthCheckResponse:
+    healthcheck.healthCheckResponse:
       properties:
         message:
           type: string
       type: object
-    controller.helloWorldResponse:
+    hello.helloWorldResponse:
       properties:
         message:
           type: string
