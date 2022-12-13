@@ -1,12 +1,12 @@
-version: '3'
-services: 
+version: "3"
+services:
   api:
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
     volumes:
       - ./src:/go/src
-    ports: 
+    ports:
       - 8080:8080
     tty: true
     stdin_open: true
@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: ./docker/geth/Dockerfile
     volumes:
-      - ./solidity:/go/solidity
+      - ./contracts:/go/contracts
       - ./src:/go/src
     tty: true
     networks:
@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./ganache/ganache-data:/var/ganache
-    ports: 
+    ports:
       - 3000:8545
     networks:
       - geth-dapp-demo-network

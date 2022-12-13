@@ -5,8 +5,8 @@ RUN add-apt-repository -y ppa:ethereum/ethereum
 RUN apt-get update && apt-get install -y \
   ethereum
 
-WORKDIR /go/solidity
-COPY ./solidity .
+WORKDIR /go/contracts
+COPY ./contracts .
 COPY ./src /go/src
 
 RUN apt-get -y install nodejs npm

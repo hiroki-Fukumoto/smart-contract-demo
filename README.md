@@ -79,7 +79,7 @@ If "Hello World" is displayed, it is successful!!
 
 # Compile solidity to Golang
 
-Compile the code in the ./solidity and output the Golang code in the ./src/contracts.
+Compile the code in the ./contracts and output the Golang code in the ./src/contracts.
 
 ```bash
 $ make sol-compile sol={solidity file name} go={golang file name}
