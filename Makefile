@@ -28,9 +28,17 @@ sol=
 go=
 sol-compile:
 	make up-d
-	docker-compose -f ./docker-compose.yml exec geth /bin/bash -c "solcjs --optimize --abi ./${sol}.sol -o build && solcjs --optimize --bin ./${sol}.sol -o build && abigen --abi=./build/${sol}_sol_${sol}.abi --bin=./build/${sol}_sol_${sol}.bin --pkg=contracts --out=../src/contracts/${go}.go"
+	docker-compose -f ./docker-compose.yml exec geth /bin/bash -c "solcjs --optimize --abi ./${sol}.sol -o build && solcjs --optimize --bin ./${sol}.sol -o build && abigen --abi=./build/${sol}_sol_${sol}.abi --bin=./build/${sol}_sol_${sol}.bin --pkg=${go} --out=../src/contracts/${go}/${go}.go"
 
 generate-api-doc:
 	make up-d
 	docker-compose -f ./docker-compose.yml exec api /bin/bash -c "swag init ./main.go"
 	cd src/docs && swagger2openapi --outfile ./v3/openapi.yaml ./swagger.yaml
+
+name=
+create-contract:
+	npx truffle create contract $(name)
+	npx truffle create test $(name)
+
+contract-test:
+	npx truffle test
