@@ -50,6 +50,34 @@ paths:
       summary: Hello World
       tags:
         - helloWorld
+  /api/v1/products:
+    post:
+      description: Create NFT product.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/product.CreateProductRequest"
+        description: New product info
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorhandler.ErrorResponse"
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorhandler.ErrorResponse"
+      summary: Create product.
+      tags:
+        - product
 servers:
   - url: //localhost:8080
 components:
@@ -77,4 +105,26 @@ components:
       properties:
         message:
           type: string
+      type: object
+    product.CreateProductRequest:
+      properties:
+        description:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+        sku:
+          type: string
+        stock:
+          type: integer
+      required:
+        - description
+        - image_url
+        - name
+        - price
+        - sku
+        - stock
       type: object

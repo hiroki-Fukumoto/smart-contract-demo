@@ -1,6 +1,7 @@
 version: "3"
 services:
   api:
+    container_name: api
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
@@ -15,6 +16,7 @@ services:
       - default
 
   geth:
+    container_name: geth
     build:
       context: .
       dockerfile: ./docker/geth/Dockerfile
@@ -26,6 +28,7 @@ services:
       - geth-dapp-demo-network
 
   ganache:
+    container_name: ganache
     build:
       context: ./docker/ganache
       dockerfile: Dockerfile

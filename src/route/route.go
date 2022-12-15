@@ -8,6 +8,7 @@ import (
 	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/contractaddress"
 	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/healthcheck"
 	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/hello"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/domain/product"
 
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -57,6 +58,13 @@ func SetupRouter() *gin.Engine {
 	{
 		c := hello.NewHelloController()
 		gHello.GET("", c.HelloWorld)
+	}
+
+	gProduct := appApiV1.Group("products")
+	{
+		s := product.NewProductService()
+		c := product.NewProductController(s)
+		gProduct.POST("", c.Create)
 	}
 
 	return route

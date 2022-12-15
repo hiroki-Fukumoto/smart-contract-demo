@@ -23,6 +23,28 @@ definitions:
       message:
         type: string
     type: object
+  product.CreateProductRequest:
+    properties:
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      sku:
+        type: string
+      stock:
+        type: integer
+    required:
+    - description
+    - image_url
+    - name
+    - price
+    - sku
+    - stock
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -79,4 +101,32 @@ paths:
       summary: Hello World
       tags:
       - helloWorld
+  /api/v1/products:
+    post:
+      consumes:
+      - application/json
+      description: Create NFT product.
+      parameters:
+      - description: New product info
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/product.CreateProductRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errorhandler.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/errorhandler.ErrorResponse'
+      summary: Create product.
+      tags:
+      - product
 swagger: "2.0"

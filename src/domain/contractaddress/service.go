@@ -4,14 +4,12 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"errors"
-	"fmt"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/hiroki-Fukumoto/geth-dapp-demo/contracts"
-	"github.com/hiroki-Fukumoto/geth-dapp-demo/env"
+	"github.com/hiroki-Fukumoto/geth-dapp-demo/ethereumclient"
 )
 
 type ContractAddressService interface {
@@ -26,12 +24,12 @@ func NewContractAddressService() ContractAddressService {
 }
 
 func (s contractAddressService) GetContractAddress() (*string, error) {
-	client, err := ethclient.Dial(fmt.Sprintf("%s:%s", env.GanacheHost(), env.GanachePort()))
+	client, err := ethereumclient.GetEthereumClient()
 	if err != nil {
 		return nil, err
 	}
 
-	priKey := "ed19d0e3fc1e8d3bb92389bf993943949c6c96f17f4bf506bb0b5c5194ee780b"
+	priKey := "928f6acb4f4305c44d86b117d4a72d559cddeacdc801b6cde6a9c7f1a63f0215"
 	privateKey, err := crypto.HexToECDSA(priKey)
 	if err != nil {
 		return nil, err

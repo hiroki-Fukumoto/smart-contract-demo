@@ -32,7 +32,7 @@ ex)
 "Containers": {
     ...
     "xxxx" : {
-        "Name": "geth-dapp-demo-geth-1", <- This is the name of the network to connect to the "geth" container.
+        "Name": "geth", <- This is the name of the network to connect to the "geth" container.
     }
 }
 ```

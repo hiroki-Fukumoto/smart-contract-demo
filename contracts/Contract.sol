@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import "./Shop.sol";
-
-contract Product is Shop {
+contract Contract {
+    function HelloWorld() external pure returns (string memory) {
+        return "Hello World";
+    }
+    
     struct ProductStruct {
         uint256 id;
         string sku;
@@ -79,4 +81,17 @@ contract Product is Shop {
 
         emit NewProduct(_name, _description, _imageURL);
     }
+
+    struct ShopStatsStruct {
+        uint256 productCount;
+        uint256 orderCount;
+        uint256 sellerCount;
+        uint256 salesCount;
+        uint256 paid;
+        uint256 balance;
+    }
+
+    ShopStatsStruct public shopStats;
+
+    mapping(address => ShopStatsStruct) public shopStatsOf;
 }
